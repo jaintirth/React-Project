@@ -1,29 +1,28 @@
+import Search from "./components/Search"
 import { useEffect, useState } from "react"
 
-const Card = ({ title }) => {
-  const [count, setCount] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
-
-  useEffect(()=>{
-    console.log('${title} has been liked: ${hasLiked}');
-  })
-  return (
-    <div className='card' onClick={()=>setCount((prevState)=>prevState+1)}>
-      <h2>{title} - {count}</h2>
-
-      <button onClick={()=>{setHasLiked(!hasLiked)}}>
-        {hasLiked? "❤︎" : "♡︎"}
-      </button>
-    </div>
-  )
-}
+const API_BASE_URL = "https://api.themoviedb.org/3";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(()=>{
+
+  },[]);
   return (
-    <div className="card-container">
-      <Card title="Stranger Things" />
-      <Card title="The Boys" />
-    </div>
+    <main>
+      <div className="pattern"/>
+      <div className="wrapper">
+        <header>
+          <img src="./hero.png" alt="Hero Banner" />
+          <h1>Find <span className="text-gradient">Movies</span>You'll Enjoy without
+          the Hassle</h1>
+        </header>
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+        <h1>{searchTerm}</h1>
+      </div>
+    </main>
   )
 }
 
